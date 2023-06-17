@@ -48,10 +48,10 @@ def delete_item(name):
         i, item_to_delete = idxs_items[0][0], idxs_items[0][1]
         del items[i]
     else:
-        raise mvc_exc.ItemNotStored("Cant delete '{}'' because its not stored".format(name))
+        raise MVC_expections.ItemNotStored("Cant delete '{}'' because its not stored".format(name))
 
 
-def main():
+"""def main():
 
     my_items = [
         {'name': 'bread', 'price': 0.5, 'quantity': 20},
@@ -94,3 +94,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+"""
