@@ -1,4 +1,4 @@
-import MVC_expections as MVC_expections # Import your own!
+import MVC_exceptions # Import your own!
 
 items = list()
 
@@ -11,7 +11,7 @@ def create_item(name, price, quantity):
     results = list(filter(lambda x: x["name"] == name, items))
     
     if results:
-        raise MVC_expections.ItemAlreadySorted("'{}' already sorted".format(name))
+        raise MVC_exceptions.ItemAlreadyStored("'{}' already Stored".format(name))
     else:
         items.append({"name": name, "price": price, "quantity": quantity})
 
@@ -21,7 +21,7 @@ def read_item(name):
     if myitems:
         return myitems[0]
     else:
-        raise MVC_expections.ItemNotSorted("Cant read '{}', because it is not stored".format(name))
+        raise MVC_exceptions.ItemNotStored("Cant read '{}', because it is not stored".format(name))
 
 
 def read_items():
@@ -38,7 +38,7 @@ def update_item(name, price, quantity):
         i, item_to_update = idxs_items[0][0], idxs_items[0][1]
         items[i] = {'name': name, 'price': price, 'quantity': quantity}
     else:
-        MVC_expections.ItemNotStored("Cant update '{}' because it is not stored".format(name))
+        MVC_exceptions.ItemNotStored("Cant update '{}' because it is not stored".format(name))
 
 def delete_item(name):
     global items
@@ -48,7 +48,7 @@ def delete_item(name):
         i, item_to_delete = idxs_items[0][0], idxs_items[0][1]
         del items[i]
     else:
-        raise MVC_expections.ItemNotStored("Cant delete '{}'' because its not stored".format(name))
+        raise MVC_exceptions.ItemNotStored("Cant delete '{}'' because its not stored".format(name))
 
 
 """def main():
@@ -93,5 +93,4 @@ def delete_item(name):
     print(read_items())
 
 if __name__ == '__main__':
-    main()
-"""
+    main()"""

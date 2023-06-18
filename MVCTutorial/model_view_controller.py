@@ -66,9 +66,9 @@ class View(object):
             print("o {}".format(item)) # Show item in a list
 
     @staticmethod
-    def show_numer_point_list(item_type, items): # Enumerated list of items (sequentially)
+    def show_number_point_list(item_type, items): # Enumerated list of items (sequentially)
         print("-{} List -".format(item_type.upper()))
-        for item in enumerate(items):
+        for i, item in enumerate(items):
             print("{}. {}".format(i+1, item)) 
 
     @staticmethod
@@ -80,3 +80,29 @@ class View(object):
     def display_item_already_stored_error(item, item_type, err): # Item already stored error
         print('Hey! We already have {} in our {} list!'.format(item.upper(), item_type))
         print('{}'.format(err.args[0]))
+
+# Controller Time! :D
+# Not everything from the tutorial
+
+class Controller(object):
+
+    def __init__(self, model, view):
+        self.model = model # Specify the model and the view
+        self.view = view
+    
+    def show_items(self, bullet_points=False):
+        items = self.model.read_items()
+        item_type = self.model.item_type
+
+        if bullet_points:
+            self.view.show_bullet_point_list(item_type, items)
+        else:
+            self.view.show_number_point_list(item_type, items)
+
+    def show_item(self, item_name):
+        try:
+            item = self.model.read_item(item_name)
+            item_type = self.model.item_type
+            self.view.show_item(item_type, item_name, item)
+        except MVC_exceptions.ItemNotStored as e:
+            self.view.display_missing_item_error(item_name, e)

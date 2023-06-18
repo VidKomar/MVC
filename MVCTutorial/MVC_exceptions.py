@@ -1,4 +1,4 @@
-class ItemAlreadySorted(Exception):
+class ItemAlreadyStored(Exception):
     pass
-class ItemNotSorted(Exception):
+class ItemNotStored(Exception):
     pass
