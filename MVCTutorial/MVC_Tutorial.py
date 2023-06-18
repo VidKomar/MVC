@@ -1,3 +1,5 @@
+# https://www.giacomodebidda.com/posts/mvc-pattern-in-python-introduction-and-basicmodel/
+
 from basic_backend import *
 import model_view_controller as MVC
 
